@@ -1,7 +1,8 @@
 /* ==========================================================================
    SITE DATA  ·  全部内容数据（中英双语）
    --------------------------------------------------------------------------
-   所有内容均整理自：简历.pdf、一作论文总结.docx、非一作论文.docx、专利.docx
+   内容来源：简历.pdf、一作论文总结.docx、非一作论文.docx、专利.docx，
+   以及用户补充的 Crossref 检索截图（2026 年新增 2 篇合作论文）。
    双语字段统一写成 { en: '...', zh: '...' }，由 main.js 按当前语言取值。
    ========================================================================== */
 
@@ -36,8 +37,8 @@ window.SITE_DATA = {
         zh: '研究聚焦多智能体深度强化学习与低空工业物联网的交叉方向，包括无人机辅助的安全数据收集、计算卸载与资源分配、物理层安全约束下的信息年龄（AoI）优化，以及网络切片与多态网络的两时间尺度动态重构。方法上以 TD3 / SAC / PPO / MAPPO / MASAC 为基础，结合随机网络蒸馏置信评估、注意力机制、合作博弈 Shapley 值、原对偶优化与迁移学习，重点解决动态性、异构性、部分可观测性、维度变化与安全约束下的决策问题。'
       },
       {
-        en: 'During my doctoral study I published 12 first-author SCI/EI papers (6 in CAS Q1 Top journals, 2 in CAS Q2 Top journals, including one ESI Highly Cited Paper), co-authored 10 further papers, and filed 10 patents. I have served as a reviewer for IEEE TWC, TMC, TCCN and TITS, and presented work orally in English at ACM CoNEXT 2025 and IEEE UCom 2023/2025.',
-        zh: '博士在读期间以第一作者发表 SCI/EI 论文 12 篇（中科院一区 Top 6 篇、二区 Top 2 篇，含 ESI 高被引论文 1 篇），合作发表论文 10 篇，申请/授权专利 10 项。长期担任 IEEE TWC、TMC、TCCN、TITS 等期刊审稿人，并在 ACM CoNEXT 2025、IEEE UCom 2023/2025 等会议进行全英文口头报告。'
+        en: 'During my doctoral study I published 12 first-author SCI/EI papers (6 in CAS Q1 Top journals, 2 in CAS Q2 Top journals, including one ESI Highly Cited Paper), co-authored 12 further papers, and filed 10 patents. I have served as a reviewer for IEEE TWC, TMC, TCCN and TITS, and presented work orally in English at ACM CoNEXT 2025 and IEEE UCom 2023/2025.',
+        zh: '博士在读期间以第一作者发表 SCI/EI 论文 12 篇（中科院一区 Top 6 篇、二区 Top 2 篇，含 ESI 高被引论文 1 篇），合作发表论文 12 篇，申请/授权专利 10 项。长期担任 IEEE TWC、TMC、TCCN、TITS 等期刊审稿人，并在 ACM CoNEXT 2025、IEEE UCom 2023/2025 等会议进行全英文口头报告。'
       }
     ],
     interestsShort: {
@@ -153,7 +154,7 @@ window.SITE_DATA = {
   ],
 
   /* ------------------------------------------------------- Publications */
-  /* rank 用于默认排序：1–12 为一作（前 8 篇即简历列出的代表作），13–22 为合作论文 */
+  /* rank 用于默认排序：1–12 为一作（前 8 篇即简历列出的代表作），13–24 为合作论文 */
   publications: [
     {
       rank: 1, year: 2024, type: 'journal', role: 'first', algo: 'ARL-MAPPO',
@@ -399,6 +400,24 @@ window.SITE_DATA = {
       detail: '2025',
       tags: [{ en: 'Conference', zh: '会议论文', kind: 'conf' }],
       note: { en: 'PPO reaches about 97% task success rate in ONU-assisted edge offloading.', zh: '以 PPO 求解工业 PON 光网络单元边缘卸载，任务成功率约 97%。' }
+    },
+    {
+      rank: 23, year: 2026, type: 'journal', role: 'co', authorPos: { en: '4th author', zh: '第四作者' },
+      title: { en: 'UAV-Enabled Multi-Tier Mobile Edge Computing for Heterogeneous Dual-Source Multi-Modal Tasks', zh: '面向异构双源多模态任务的无人机使能多层移动边缘计算' },
+      authors: 'Xinyang You, Dingjia Lin, Yaxi Liu, Xulong Li, Peng Wang, Wei Huangfu, Keping Long',
+      venue: { en: 'IEEE Wireless Communications Letters (WCL)', zh: 'IEEE Wireless Communications Letters (WCL)' },
+      detail: '2026 · DOI 10.1109/LWC.2026.3684964',
+      tags: [{ en: 'SCI', zh: 'SCI 期刊', kind: 'q1' }],
+      note: { en: 'Multi-tier UAV-edge computing for heterogeneous dual-source multi-modal tasks (title-based summary).', zh: '面向异构双源多模态任务的无人机多层移动边缘计算（据题名整理）。' }
+    },
+    {
+      rank: 24, year: 2026, type: 'journal', role: 'co', authorPos: { en: '3rd author', zh: '第三作者' },
+      title: { en: 'Self-Evolving Virtual Network Orchestration From Devices to Cloud Over Shared Infrastructure for Dynamic Services', zh: '面向动态业务的共享基础设施设备到云自演进虚拟网络编排' },
+      authors: 'Xiying Fan, Yaxi Liu, Xulong Li, Chengyi Li, Wei Huangfu, Zongpeng Li, Haijun Zhang',
+      venue: { en: 'IEEE Transactions on Mobile Computing (TMC)', zh: 'IEEE Transactions on Mobile Computing (TMC)' },
+      detail: 'Dec. 2026 · DOI 10.1109/TMC.2026.3725358',
+      tags: [{ en: 'CCF-A', zh: 'CCF-A', kind: 'ccfa' }],
+      note: { en: 'Self-evolving virtual network orchestration from devices to cloud over shared infrastructure (title-based summary).', zh: '共享基础设施上覆盖设备到云的自演进虚拟网络编排（据题名整理）。' }
     }
   ],
 
