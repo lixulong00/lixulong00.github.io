@@ -1,5 +1,6 @@
-# 一次性引导脚本：把 Pages 发布源设为 main / (root)。
-# 站点上线后会立刻删除本文件。
+# 一次性引导脚本：让静态主页上线。
+# 优先用官方 Pages Actions 部署；若仓库发布源不是 GitHub Actions，
+# 则退回到「从 main 分支 / 根目录发布」。站点上线后会删除本文件。
 name: Enable GitHub Pages (one-time)
 
 on:
@@ -7,26 +8,47 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
+permissions: write-all
+
+concurrency:
+  group: pages-bootstrap
+  cancel-in-progress: true
 
 jobs:
-  enable:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Create or update Pages configuration
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Fallback - publish from main branch
+        if: always() && steps.deploy.outcome != 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          set +e
           BODY='{"build_type":"legacy","source":{"branch":"main","path":"/"}}'
-          echo "=== POST /repos/$REPO/pages ==="
+          echo "=== POST create Pages config ==="
           printf '%s' "$BODY" | gh api -X POST "/repos/$REPO/pages" \
-            -H "Accept: application/vnd.github+json" --input - 2>&1 | head -25
-          echo "=== PUT /repos/$REPO/pages (in case it already exists) ==="
+            -H "Accept: application/vnd.github+json" --input - 2>&1 || true
+          echo "=== PUT update Pages config ==="
           printf '%s' "$BODY" | gh api -X PUT "/repos/$REPO/pages" \
-            -H "Accept: application/vnd.github+json" --input - 2>&1 | head -25
-          echo "=== GET /repos/$REPO/pages ==="
-          gh api "/repos/$REPO/pages" --jq '{build_type, source, status, html_url}' 2>&1 | head -25
+            -H "Accept: application/vnd.github+json" --input - 2>&1 || true
+          echo "=== GET verify ==="
+          gh api "/repos/$REPO/pages" 2>&1 || true
