@@ -42,7 +42,7 @@ window.SITE_CONFIG = {
   // 第二隶属单位 / 实验室。如不需要，改为 null 即可整行隐藏。
   // 注：此项来自你的工作背景记录，简历正文中未出现，请自行核对是否保留。
   lab: {
-    en: 'Shanxi Key Laboratory of Industrial Internet Security (SLIIS)',
+    en: 'Shanxi Key Laboratory of Industrial Internet Security (SKLIIS)',
     zh: '工业互联网安全山西省重点实验室（SKLIIS）'
   },
 
