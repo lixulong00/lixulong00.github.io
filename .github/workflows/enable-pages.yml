@@ -1,0 +1,32 @@
+# 一次性引导脚本：把 Pages 发布源设为 main / (root)。
+# 站点上线后会立刻删除本文件。
+name: Enable GitHub Pages (one-time)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or update Pages configuration
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set +e
+          BODY='{"build_type":"legacy","source":{"branch":"main","path":"/"}}'
+          echo "=== POST /repos/$REPO/pages ==="
+          printf '%s' "$BODY" | gh api -X POST "/repos/$REPO/pages" \
+            -H "Accept: application/vnd.github+json" --input - 2>&1 | head -25
+          echo "=== PUT /repos/$REPO/pages (in case it already exists) ==="
+          printf '%s' "$BODY" | gh api -X PUT "/repos/$REPO/pages" \
+            -H "Accept: application/vnd.github+json" --input - 2>&1 | head -25
+          echo "=== GET /repos/$REPO/pages ==="
+          gh api "/repos/$REPO/pages" --jq '{build_type, source, status, html_url}' 2>&1 | head -25
