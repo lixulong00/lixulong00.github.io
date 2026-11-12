@@ -106,7 +106,7 @@
     h += link(lang === 'zh' ? '邮箱' : 'Email', 'mailto:' + CFG.emailPrimary, 'mail', { primary: true });
     h += link('Google Scholar', 'https://scholar.google.com/citations?user=' + CFG.scholarId, 'scholar');
     h += link('GitHub', 'https://github.com/' + CFG.githubUser, 'github');
-    if (CFG.cvUrl) h += link('CV', CFG.cvUrl, 'cv', { download: true });
+    if (CFG.cvUrl) h += link(lang === 'zh' ? '简历' : 'CV', CFG.cvUrl, 'cv', { download: true });
     if (CFG.orcid)    h += link('ORCID', 'https://orcid.org/' + CFG.orcid, 'link');
     if (CFG.dblp)     h += link('DBLP', CFG.dblp, 'link');
     if (CFG.homepage) h += link(lang === 'zh' ? '机构主页' : 'Homepage', CFG.homepage, 'link');
