@@ -20,14 +20,14 @@ window.SITE_CONFIG = {
   scholarLabel: 'xulongli',
 
   // 可选外链：留空字符串则不显示该按钮
-  orcid: '',            // 例：'0000-0002-1825-0097'
+  orcid: '0009-0003-2088-8799',            // 例：'0000-0002-1825-0097'
   dblp: '',             // 例：'https://dblp.org/pid/123/4567.html'
   homepage: '',         // 学院个人主页等其他链接
 
   /* ---- 2. 联系方式 ------------------------------------------------------ */
 
   // 两个邮箱来自简历，可按需修改
-  emailPrimary: 'xulongli@xs.ustb.edu.cn',
+  emailPrimary: 'lixulong@tyut.edu.cn',
   emailSecondary: 'lixulong0308@qq.com',
 
   // 手机号默认不公开展示。若要展示，填入字符串即可（例：'182-3486-6422'）
@@ -42,8 +42,8 @@ window.SITE_CONFIG = {
   // 第二隶属单位 / 实验室。如不需要，改为 null 即可整行隐藏。
   // 注：此项来自你的工作背景记录，简历正文中未出现，请自行核对是否保留。
   lab: {
-    en: 'Shanxi Key Laboratory of Industrial Internet Security (SLIIS)',
-    zh: '山西省工业互联网安全重点实验室（SLIIS）'
+    en: 'Shanxi Key Laboratory of Industrial Internet Security (SKLIIS)',
+    zh: '工业互联网安全山西省重点实验室（SKLIIS）'
   },
 
   /* ---- 4. 站点元信息 ---------------------------------------------------- */
